@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign-Up Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-overlay"></div>
+    <form action="/signup" method="post">
+        <div class="container">
+            <div class="input-form">
+                <div class="logo">
+                    <img src="./assets/burger-svgrepo-com.svg" alt="logo-svg">
+                </div>
+                <div class="title">
+                    <h3>Food Recipe</h3>
+                    <h4>Sign Up</h4>
+                </div>
+                <div class="input-section">
+                    
+                    <input type="email" name="user-email-sign-up" placeholder="example@gmail.com" required>
+                    <input type="password" name="user-password-sign-up" placeholder="Create password" required>
+                    <input type="password" name="user-confirm-password" placeholder="Confirm password" required>
+                </div>
+                <div class="btn">
+                    <button class="sign-up-btn" type="submit">Sign Up</button>
+                </div>
+                <div class="additional-info">
+                    <h3>Already have an account? <a href="./login-page.html">Sign In</a></h3>
+                </div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
