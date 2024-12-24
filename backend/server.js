@@ -2,7 +2,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-const bcrypt = require('bcrypt'); // Import bcrypt for password hashing
 require('dotenv').config();
 
 const app = express();
@@ -39,7 +38,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Sign-up route with password hashing
+// Sign-up route without password hashing
 app.post('/sign-up', async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 
@@ -57,10 +56,7 @@ app.post('/sign-up', async (req, res) => {
       return res.status(400).send('Email already exists');
     }
 
-    // Hash the password before saving it to the database
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const newUser = new User({ email: email.toLowerCase(), password: hashedPassword });
+    const newUser = new User({ email: email.toLowerCase(), password });
     await newUser.save();
 
     res.send('User registered successfully');
@@ -70,7 +66,7 @@ app.post('/sign-up', async (req, res) => {
   }
 });
 
-// Login route with password comparison using bcrypt
+// Login route without password hashing
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -80,9 +76,7 @@ app.post('/login', async (req, res) => {
       return res.status(400).send('User not found');
     }
 
-    // Compare the provided password with the hashed password in the database
-    const isPasswordValid = await bcrypt.compare(password, user.password);
-    if (!isPasswordValid) {
+    if (password !== user.password) {
       return res.status(400).send('Incorrect password');
     }
 
