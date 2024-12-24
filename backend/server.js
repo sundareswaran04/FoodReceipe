@@ -6,6 +6,8 @@ require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3200;
+const cors = require('cors');
+app.use(cors());
 
 // Use mongoose.set() to address the deprecation warning
 mongoose.set('strictQuery', false);
