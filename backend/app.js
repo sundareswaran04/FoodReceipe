@@ -16,6 +16,7 @@ async function fetchRecipeOfTheDay() {
     const result = await response.json();
     console.log('Recipe of the Day:', result); // Debugging log
     displayRecipeOfTheDay(result.results[Date.now() % result.results.length]);
+    console.log([Date.now() % result.results.length]);
   } catch (error) {
     console.error('Error fetching recipe of the day:', error);
   }
