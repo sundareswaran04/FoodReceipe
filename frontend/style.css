@@ -169,7 +169,7 @@ body {
 
 @media (max-width: 480px) {
     .container {
-        max-width: 95%;
+        max-width: 80%;
         padding: 10px;
     }
 

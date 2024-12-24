@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Recipe</title>
+    <link rel="stylesheet" href="style-home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    
+    <header class="header">
+        <div class="logo">
+            <img src="./assets/burger-svgrepo-com.svg" alt="Burger Icon" class="icon">
+            Food Recipe
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="Search recipe">
+            <button class="search-icon">
+                <img src="./assets/icons8-search-100.png" alt="Search Icon" class="icon">
+            </button>
+        </div>
+        <div class="user-icon">
+            <img src="./assets/icons8-user-100.png" alt="User Icon" class="icon">
+        </div>
+    </header>
+
+   
+    <section class="recipe-of-the-day">
+        <div class="recipe-highlight" id="recipe-of-the-day">
+            <p class="sub-title">Recipe of the day</p>
+            <h1 id="recipe-title"></h1>
+            <p class="description" id="recipe-description"></p>
+            <button class="get-recipe-btn">Get Recipe →</button>
+        </div>
+        <img src="" alt="Recipe Image" class="highlight-img" id="recipe-image">
+    </section>
+
+    <!-- Popular Recipes -->
+    <section class="popular-recipes">
+        <h2>Popular Recipes</h2>
+        <div class="scroll-container">
+            <button class="scroll-arrow left-arrow" onclick="scrollLeft()">&#9664;</button>
+            <div class="recipe-cards" id="recipes-container">
+                <!-- Cards dynamically added here -->
+            </div>
+            <button class="scroll-arrow right-arrow" onclick="scrollRight()">&#9654;</button>
+        </div>
+    </section>
+
+    <script src="/backend/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,348 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 50px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    font-size: 24px;
+    font-weight: 600;
+    color: #ff6600;
+}
+
+.logo .icon {
+    width: 30px; /* Reduce the size of the burger icon */
+    height: 30px;
+    margin-right: 10px;
+}
+
+.search-bar {
+    display: flex;
+    gap: 10px;
+    align-items: center; /* Align items vertically */
+}
+
+.search-bar input {
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    width: 250px;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: transparent; /* Remove the orange background */
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.search-bar .icon {
+    width: 20px;
+    height: 20px;
+}
+
+.user-icon {
+    display: flex;
+    align-items: center;
+}
+
+.user-icon .icon {
+    width: 30px;
+    height: 30px;
+}
+
+/* Recipe of the Day */
+.recipe-of-the-day {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px 50px;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.1)), url('./images/vegetable-sizzler.jpg') no-repeat center center/cover;
+    margin: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    color: #fff;
+}
+
+.recipe-highlight {
+    max-width: 50%;
+}
+
+.recipe-highlight .sub-title {
+    font-size: 14px;
+    color: #ff6600;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.recipe-highlight h1 {
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.recipe-highlight .description {
+    font-size: 16px;
+    color: #ddd;
+    margin-bottom: 20px;
+}
+
+.get-recipe-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.get-recipe-btn:hover {
+    background-color: #e65c00;
+}
+
+.highlight-img {
+    display: none;
+}
+
+/* Popular Recipes */
+.popular-recipes {
+    padding: 20px 50px;
+}
+
+.popular-recipes h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #222;
+}
+
+.scroll-container {
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Ensure the container hides overflow */
+}
+
+.recipe-cards {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 20px;
+    padding: 10px 0;
+    white-space: nowrap; /* Ensure items are in a single line */
+    width: 100%; /* Ensure the container takes full width */
+}
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    vertical-align: top;
+    width: 250px;
+}
+
+.recipe-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+}
+
+.recipe-card .description {
+    font-size: 14px;
+    color: #777;
+    margin: 10px 0;
+    padding: 0 10px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; /* Number of lines to show */
+    -webkit-box-orient: vertical;
+    white-space: normal; /* Allow text to wrap */
+}
+
+.recipe-card .rating,
+.recipe-card .duration {
+    font-size: 14px;
+    color: #777;
+    margin: 5px 0;
+}
+
+.recipe-card button {
+    padding: 10px 15px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    width: 100px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    align-self: center;
+}
+
+.recipe-card button:hover {
+    background-color: #e65c00;
+}
+
+.scroll-arrow {
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 24px;
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.scroll-arrow:hover {
+    background-color: #e65c00;
+}
+
+/* Login Page */
+.login-container {
+    max-width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.login-container h2 {
+    margin-bottom: 20px;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.login-container button {
+    padding: 10px 20px;
+    background-color: #ff6600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.login-container button:hover {
+    background-color: #e65c00;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        padding: 10px 20px;
+    }
+
+    .logo {
+        margin-bottom: 10px;
+    }
+
+    .search-bar {
+        width: 100%;
+    }
+
+    .search-bar input {
+        width: 100%;
+    }
+
+    .recipe-of-the-day {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+    }
+
+    .recipe-highlight {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .highlight-img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-top: 20px;
+    }
+
+    .popular-recipes {
+        padding: 10px 20px;
+    }
+
+    .scroll-arrow {
+        width: 30px;
+        height: 30px;
+        font-size: 18px;
+    }
+
+    .recipe-cards {
+        flex-direction: column; /* Align items vertically */
+        overflow-x: hidden; /* Disable horizontal scrolling */
+        overflow-y: auto; /* Enable vertical scrolling */
+    }
+
+    .recipe-card {
+        width: 100%; /* Full width for each card */
+        margin-bottom: 20px; /* Space between cards */
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10px;
+    }
+
+    .recipe-of-the-day {
+        padding: 10px;
+    }
+
+    .recipe-card {
+        width: 100%; /* Full width for each card */
+        margin-bottom: 20px; /* Space between cards */
+    }
+
+    .scroll-arrow {
+        width: 25px;
+        height: 25px;
+        font-size: 16px;
+    }
+}
