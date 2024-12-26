@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const uri = "mongodb+srv://sundarm9345:<db_password>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe"; // Use .env for MongoDB URI
+const uri =  process.env.MONGODB_URI; // Use .env for MongoDB URI
 
 mongoose.set('strictQuery', false);
 mongoose
