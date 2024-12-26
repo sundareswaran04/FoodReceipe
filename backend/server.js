@@ -17,13 +17,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const uri =  process.env.MONGODB_URI; // Use .env for MongoDB URI
+const uri =  process.env.MONGODB_URI || "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
 mongoose.set('strictQuery', false);
-mongoose
-  .connect(uri)
-  .then(() => console.log('MongoDB connected...'))
-  .catch(err => console.error('Error connecting to MongoDB:', err));
+mongoose.connect(uri, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  serverSelectionTimeoutMS: 60000, // Increase timeout to 30 seconds
+});
 
 // Static Files
 app.use(express.static(path.join(__dirname, '../frontend')));
