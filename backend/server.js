@@ -22,7 +22,7 @@ const uri =  process.env.MONGODB_URI || "mongodb://sundarm9345:<Sundar472004>@fo
 
 mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
-  serverSelectionTimeoutMS: 60000, // Increase timeout to 30 seconds
+  serverSelectionTimeoutMS: 50000, // Increase timeout to 30 seconds
 })
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
