@@ -19,13 +19,16 @@ app.use(bodyParser.json());
 // MongoDB Connection
 const uri =  process.env.MONGODB_URI || "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
+
 mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   serverSelectionTimeoutMS: 60000, // Increase timeout to 30 seconds
-});
+})
+.then(() => console.log('MongoDB connected...'))
+.catch(err => console.error('Error connecting to MongoDB:', err));
 
+// Static Files
+app.use(express.static(path.join(__dirname, '../frontend')));
 // Static Files
 app.use(express.static(path.join(__dirname, '../frontend')));
 
