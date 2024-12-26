@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const result = await response.json();
           if (result.success) {
-            window.location.href = './index.html';
+            window.location.href = './HomePage.html';
           } else {
             alert('Login failed');
           }

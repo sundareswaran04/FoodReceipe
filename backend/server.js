@@ -2,37 +2,43 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
-require('dotenv').config();
+const dotenv = require('dotenv');
+const bcrypt = require('bcryptjs');
+const cors = require('cors');
+
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3200;
-const cors = require('cors');
+
+// Middleware
 app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
-// Use mongoose.set() to address the deprecation warning
-mongoose.set('strictQuery', false);
-
+// MongoDB Connection
 const uri = process.env.MONGODB_URI || "mongodb+srv://sundarm9345:Sundar472004@foodrecipe.nr26n.mongodb.net/foodrecipe?retryWrites=true&w=majority";
 
-console.log("MongoDB URI:", uri); // Log the connection string for debugging
-
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json()); // Add this line to parse JSON bodies
+mongoose.set('strictQuery', false);
 
 mongoose.connect(uri)
   .then(() => console.log('MongoDB connected...'))
   .catch(err => console.log('Error connecting to MongoDB:', err));
 
+// Static Files
 app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, './backend')));
 
+// Routes
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+  res.sendFile(path.join(__dirname, '..frontend/login-page.html'));
 });
 
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../frontend/login.html'));
+  res.sendFile(path.join(__dirname, '../frontend/login-page.html'));
 });
 
+// User Schema
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true }
@@ -40,7 +46,7 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model('User', userSchema);
 
-// Sign-up route without password hashing
+// User Registration Route
 app.post('/sign-up', async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 
@@ -58,7 +64,9 @@ app.post('/sign-up', async (req, res) => {
       return res.status(400).send('Email already exists');
     }
 
-    const newUser = new User({ email: email.toLowerCase(), password });
+    const hashedPassword = await bcrypt.hash(password, 10); // Hash the password before saving it
+
+    const newUser = new User({ email: email.toLowerCase(), password: hashedPassword });
     await newUser.save();
 
     res.send('User registered successfully');
@@ -68,7 +76,7 @@ app.post('/sign-up', async (req, res) => {
   }
 });
 
-// Login route without password hashing
+// User Login Route
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -78,7 +86,8 @@ app.post('/login', async (req, res) => {
       return res.status(400).send('User not found');
     }
 
-    if (password !== user.password) {
+    const isMatch = await bcrypt.compare(password, user.password); // Compare hashed passwords
+    if (!isMatch) {
       return res.status(400).send('Incorrect password');
     }
 
@@ -89,6 +98,7 @@ app.post('/login', async (req, res) => {
   }
 });
 
+// Start Server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

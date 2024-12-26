@@ -52,7 +52,7 @@ function displayPopularRecipes(recipes) {
       <p class="description">${truncateText(recipe.description, 200)}</p>
       <p class="rating">Rating: ★★★★☆</p> 
       <p class="duration">Duration: 30 mins</p>
-      <button>Get Recipe →</button>
+      <button>Get Recipe</button>
     `;
     container.appendChild(card);
   });
@@ -79,7 +79,7 @@ window.scrollRight = function() {
   fetchRecipes();
 }
 
-// Fetch the "Recipe of the Day" once when the page loads
+
 fetchRecipeOfTheDay();
-// Fetch the initial set of popular recipes
+
 fetchRecipes();
