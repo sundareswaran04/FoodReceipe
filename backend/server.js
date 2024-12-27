@@ -12,12 +12,12 @@ const app = express();
 const port = process.env.PORT || 3200;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000' })); // Allow specific origins
+app.use(cors({ origin: 'http://localhost:3200' })); // Allow specific origins
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const uri =  process.env.MONGODB_URI || "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
+const uri = "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
 
 mongoose.set('strictQuery', false);
