@@ -4,7 +4,7 @@ const baseUrl = 'https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes
 const options = {
   method: 'GET',
   headers: {
-    'x-rapidapi-key': '81ca33febcmsh635df48e723c312p1e3ac4jsnc37981e3dcdd',
+    'x-rapidapi-key': 'f524d4c098msh693447b79e988e9p1134a5jsn129fa365cef3',
     'x-rapidapi-host': 'tasty.p.rapidapi.com'
   }
 };
