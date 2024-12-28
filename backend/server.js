@@ -17,6 +17,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
+<<<<<<< HEAD
+=======
+const uri = "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
+>>>>>>> 63f9e9d0f61ce46e8f930f3e960d6018b00e8f5d
 
 const uri =  process.env.MONGODB_URI ||"mongodb+srv://sundarm9345:Sundar472004@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
