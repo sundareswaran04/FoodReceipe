@@ -12,21 +12,16 @@ const app = express();
 const port = process.env.PORT || 3200;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3200' })); // Allow specific origins
+app.use(cors()); // Allow specific origins
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-<<<<<<< HEAD
-=======
-const uri = "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
->>>>>>> 63f9e9d0f61ce46e8f930f3e960d6018b00e8f5d
-
-const uri =  process.env.MONGODB_URI ||"mongodb+srv://sundarm9345:Sundar472004@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
+const uri =process.env.MONGODB_URI|| "mongodb+srv://new-user-01:test123@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
 mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
-  serverSelectionTimeoutMS: 50000, // Increase timeout to 30 seconds
+  serverSelectionTimeoutMS: 10000, 
 })
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
@@ -42,6 +37,7 @@ app.get('/', (req, res) => {
 app.get('/login', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/login-page.html'));
 });
+
 
 // User Schema
 const userSchema = new mongoose.Schema({
@@ -116,6 +112,9 @@ app.post('/sign-up', async (req, res) => {
     res.status(500).json({ error: 'Error registering user' });
   }
 });
+// API endpoint to fetch comments for a specific recipeId
+
+
 
 // User Login Route
 app.post('/login', async (req, res) => {
@@ -165,19 +164,21 @@ app.post('/comment-post', async (req, res) => {
     res.status(500).json({ error: 'Error posting comment' });
   }
 });
-app.get('/section', async (req, res) => {
-  const { recipeId } = req.query;
 
-  if (!recipeId) {
-    return res.status(400).json({ error: 'Recipe ID is required' });
+app.get('/comment-section', async (req, res) => {
+  const Id  = req.query.Id;
+
+  if (!Id) {
+  
+    return res.status(400).json({ error: `Recipe ID is required${Id}` });
   }
 
   try {
-    const comments = await Comment.find({ recipeId });
+    const comments = await Comment.find({ recipeId: Id });
     if (comments.length === 0) {
-      return res.status(404).json({ error: 'No comments available for this recipe.' });
+      return res.json([]); // Return an empty array instead of an error
     }
-    res.json({ comments }); // Wrap comments in an object for consistency
+    res.json(comments); // Return comments as JSON array
   } catch (error) {
     console.error('Error fetching comments:', error);
     res.status(500).json({ error: 'Error fetching comments' });

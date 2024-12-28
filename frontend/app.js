@@ -10,14 +10,14 @@ const options = {
     'x-rapidapi-host': 'tasty.p.rapidapi.com'
   }
 };
-function userFromUrl() {
+
   const params = new URLSearchParams(window.location.search);
   const email =  params.get('email');
   const user_div = document.getElementById('user-profile-popup');
   const h4 = document.createElement('h4');
   h4.innerText = email;
   user_div.append(h4);
-}
+
 async function fetchRecipeOfTheDay() {
   const url = `${baseUrl}&from=0&size=1`;
   try {
@@ -27,7 +27,7 @@ async function fetchRecipeOfTheDay() {
     const recipe = result.results[0]; // Pick the first recipe
     displayRecipeOfTheDay(recipe);
     document.getElementById('get-recipe-btn').addEventListener('click', () => {
-      window.location.href = `recipe-details.html?id=${recipe.id}`;
+      window.location.href = `recipe-details.html?id=${recipe.id}?email=${email}`;
     });
   } catch (error) {
     console.error('Error fetching recipe of the day:', error);
@@ -66,7 +66,7 @@ function displayPopularRecipes(recipes) {
       <p class="description">${truncateText(recipe.description, 200)}</p>
       <p class="rating">Rating: ★★★★☆</p> 
       <p class="duration">Duration: 30 mins</p>
-      <button onclick="window.location.href='recipe-details.html?id=${recipe.id}'">Get Recipe</button>
+      <button onclick="window.location.href='recipe-details.html?id=${recipe.id}?email=${email}'">Get Recipe</button>
     `;
     container.appendChild(card);
   });

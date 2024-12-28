@@ -16,7 +16,10 @@
             <div class="search-container">
                 <input type="text" placeholder="Search recipe..." class="search-bar">
             </div>
-            <div class="user-profile"><img src="./assets/icons8-user-100.png" alt="user"></div>
+            <div class="user-profile" onmouseenter="PopupOpen()" onmouseleave="PopupClose()"><img src="./assets/icons8-user-100.png" alt="user"></div>
+            <div class="user-profile-popup" id="user-profile-popup">
+                <img src="./assets/email-icon.svg" alt="email-icon"> 
+          </div>
         </div>
         <section class="recipe-header" id="recipe-header">
             <div class="overlay">
@@ -37,7 +40,7 @@
                 <div class="left-column">
                     <h3>Ingredients</h3>
                     <ul class="ingredients-list" id="ingredients-list">
-                        <!-- Ingredients will be dynamically loaded here -->
+                       
                     </ul>
 
                     <form class="comment-form" method="post" action="/comment-post" id="comment-form">
@@ -66,7 +69,7 @@
                     <ol class="steps-list" id="steps-list">
                        
                     </ol>
-
+                    <h3>Comments</h3>
                     <div class="comments" id="comments-list">
                        
                     </div>
