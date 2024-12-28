@@ -12,13 +12,13 @@ const app = express();
 const port = process.env.PORT || 3200;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000' })); // Allow specific origins
+app.use(cors({ origin: 'http://localhost:3200' })); // Allow specific origins
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const uri =  process.env.MONGODB_URI || "mongodb://sundarm9345:<Sundar472004>@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
+const uri =  process.env.MONGODB_URI ||"mongodb+srv://sundarm9345:Sundar472004@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
 mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
@@ -27,8 +27,6 @@ mongoose.connect(uri, {
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// Static Files
-app.use(express.static(path.join(__dirname, '../frontend')));
 // Static Files
 app.use(express.static(path.join(__dirname, '../frontend')));
 
@@ -52,12 +50,37 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    minlength: 6 // Enforce minimum password length
+    minlength: 6 
   }
 });
 
+const commentSchema = new mongoose.Schema({
+  email:{
+    type: String,
+    required: true,
+    match: /^[^\s@]+\@[^\s@]+\.[^\s@]+$/ // Email format validation
+  },
+  name:{
+    type: String,
+    required: true
+  },
+  comment:{
+    type: String,
+    required: true
+  },
+  rating: {
+    type: Number,
+    required: true,
+    min: 1,
+    max: 5
+  },
+  recipeId:{
+    type: String,
+    required: true
+  }
+});
 const User = mongoose.model('User', userSchema);
-
+const Comment = mongoose.model('Comment', commentSchema);
 // User Registration Route
 app.post('/sign-up', async (req, res) => {
   const { email, password, confirmPassword } = req.body;
@@ -113,6 +136,47 @@ app.post('/login', async (req, res) => {
   } catch (error) {
     console.error('Error logging in:', error);
     res.status(500).json({ error: 'Error logging in' });
+  }
+});
+
+app.post('/comment-post', async (req, res) => {
+  const { email, name, comment, rating, recipeId } = req.body;
+
+  if (!email || !name || !comment || !rating || !recipeId) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const newComment = new Comment({
+      email: email.toLowerCase(),
+      name: name,
+      comment: comment,
+      rating: rating,
+      recipeId: recipeId
+    });
+    await newComment.save();
+    res.json({ message: 'Comment posted successfully' });
+  } catch (error) {
+    console.error('Error posting comment:', error);
+    res.status(500).json({ error: 'Error posting comment' });
+  }
+});
+app.get('/section', async (req, res) => {
+  const { recipeId } = req.query;
+
+  if (!recipeId) {
+    return res.status(400).json({ error: 'Recipe ID is required' });
+  }
+
+  try {
+    const comments = await Comment.find({ recipeId });
+    if (comments.length === 0) {
+      return res.status(404).json({ error: 'No comments available for this recipe.' });
+    }
+    res.json({ comments }); // Wrap comments in an object for consistency
+  } catch (error) {
+    console.error('Error fetching comments:', error);
+    res.status(500).json({ error: 'Error fetching comments' });
   }
 });
 

@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } else {
           const result = await response.json();
           if (result.success) {
-            window.location.href = './HomePage.html';
+            window.location.href = `./HomePage.html?email=${email}`;
           } else {
             alert('Login failed');
           }
@@ -80,4 +80,5 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
 });

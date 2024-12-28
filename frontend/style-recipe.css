@@ -1,0 +1,379 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+    font-family:'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.top-bar {
+    /* background-color: #ff5722; */
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    z-index: 10;
+   
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    color:#e64a19;
+    display:flex;
+    align-items: center;
+}
+.search-container {
+    display: flex;
+    justify-content: flex-end;
+    flex: 1;
+    margin: 0 20px;
+}
+
+.search-bar {
+    width: 200px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+}
+.top-bar img{
+    width: 40px;
+    height: 40px;
+   
+    margin-right: 10px;
+}
+.user-profile {
+    
+    font-size: 18px;
+}
+
+.user-profile img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.container {
+    width: 100%;
+    margin: auto;
+    padding: 20px;
+    position: relative;
+    box-sizing: border-box;
+}
+
+.recipe-header {
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    height: 500px;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-image: linear-gradient(to right, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0));
+}
+
+.recipe-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), transparent);
+    z-index: 1;
+}
+
+.recipe-header .overlay {
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.recipe-header .recipe-info {
+    padding: 20px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+}
+
+.recipe-header .recipe-info h2 {
+    margin: 0;
+}
+.recipe-info h2{
+    z-index:1000;
+    color:white;
+}
+.recipe-header .details {
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 20px;
+    width: 100%;
+    color: white;
+    z-index: 5;
+}
+
+.recipe-header .details p {
+    margin: 5px 0;
+}
+
+.recipe-section {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.recipe-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.left-column,
+.right-column {
+    width: 48%;
+}
+
+.recipe-details {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.recipe-image {
+    flex: 1 1 50%;
+}
+
+.image-placeholder {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    background-color: #e0e0e0;
+}
+
+.recipe-info {
+    flex: 1 1 50%;
+    padding-left: 20px;
+}
+.recipe-section h3 {
+    font-size: large;
+    color:#ff5722;
+    font-weight:bolder;
+}
+.ingredients-list,
+.steps-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+.ingredients-list li,
+.steps-list li {
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.comment-form {
+    margin-top: 30px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f5f5f5;
+    font-weight:bolder;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+.form-group label{
+    margin-bottom:10px;
+}
+
+#rating-form{
+    display:flex;
+}
+
+
+.recipe-title h2{
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color:white;
+}
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.btn {
+    background-color: #ff5722;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn:hover {
+    background-color: #e64a19;
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comment {
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  h1, h2, h3 {
+    color: #333;
+  }
+  
+  /* Recipe Header */
+  #recipe-header {
+    background-size: cover;
+    background-position: center;
+    height: 300px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+  }
+  
+  /* Title Section */
+  #recipe-title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  /* Ingredients List */
+  #ingredients-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+    margin-bottom: 30px;
+  }
+  
+  #ingredients-list li {
+    font-size: 1rem;
+    margin-bottom: 5px;
+  }
+  
+  /* Steps List */
+  #steps-list {
+    list-style-type: decimal;
+    padding-left: 20px;
+  }
+  
+  #steps-list li {
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+
+@media (max-width: 768px) {
+  .top-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .search-container {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .search-bar {
+    width: 100%;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .recipe-header {
+    height: 200px;
+  }
+
+  .recipe-content {
+    flex-direction: column;
+  }
+
+  .left-column,
+  .right-column {
+    width: 100%;
+  }
+
+  .recipe-info {
+    padding-left: 0;
+  }
+
+  .recipe-header .details {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .recipe-header .details p {
+    margin: 5px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-bar {
+    padding: 10px;
+
+  }
+
+  .logo {
+    font-size: 20px;
+    align-self:center;
+  }
+
+  .user-profile {
+    font-size: 16px;
+    align-self:center;
+  }
+
+  .recipe-title h2 {
+    font-size: 1.5rem;
+  }
+
+  input, textarea {
+    font-size: 14px;
+  }
+
+  .btn {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .comment {
+    padding: 8px;
+  }
+}
+
