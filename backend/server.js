@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 // MongoDB Connection
-const uri =process.env.MONGODB_URI|| "mongodb+srv://new-user-01:test123@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
+const uri =process.env.MONGODB_URI;
 
 mongoose.set('strictQuery', false);
 mongoose.connect(uri, {
