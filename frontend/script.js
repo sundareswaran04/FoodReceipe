@@ -26,12 +26,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.status === 400) {
           const result = await response.text();
-          alert(result);
+          const popup_div = document.getElementById('popup-msg-body');
+          const p = document.createElement('p');
+          popup_div.innerHTML = '';
+          p.innerText = result;
+          popup_div.appendChild(p);
+          document.getElementById('popup-msg-content').style.display = 'flex';
         } else if (response.status === 500) {
           alert('Error registering user');
         } else {
           const result = await response.text();
-          alert(result);
+          window.location.href = `./HomePage.html?email=${email}`;
         }
       } catch (error) {
         console.error('Error:', error);
@@ -63,7 +68,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (response.status === 400) {
           const result = await response.text();
-          alert(result);
+          const popup_div = document.getElementById('popup-msg-body');
+          const p = document.createElement('p');
+          popup_div.innerHTML = '';
+          p.innerText = result;
+          popup_div.appendChild(p);
+          document.getElementById('popup-msg-content').style.display = 'flex';
         } else if (response.status === 500) {
           alert('Error logging in');
         } else {
@@ -82,3 +92,8 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
 });
+
+function ClosePopupMsg()
+{
+  document.getElementById('popup-msg-content').style.display = 'none';
+}

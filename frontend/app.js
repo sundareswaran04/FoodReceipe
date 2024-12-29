@@ -17,14 +17,15 @@ const options = {
   const h4 = document.createElement('h4');
   h4.innerText = email;
   user_div.append(h4);
+const recipeOfday = Math.floor(Date.now()*.00000000001)
 
 async function fetchRecipeOfTheDay() {
-  const url = `${baseUrl}&from=0&size=1`;
+  const url = `${baseUrl}&from=0&size=100`;
   try {
     const response = await fetch(url, options);
     const result = await response.json();
     console.log('Recipe of the Day:', result); // Debugging log
-    const recipe = result.results[0]; // Pick the first recipe
+    const recipe = result.results[recipeOfday]; // Pick the first recipe
     displayRecipeOfTheDay(recipe);
     document.getElementById('get-recipe-btn').addEventListener('click', () => {
       window.location.href = `recipe-details.html?id=${recipe.id}?email=${email}`;
@@ -64,8 +65,8 @@ function displayPopularRecipes(recipes) {
     card.innerHTML = `
       <img src="${recipe.thumbnail_url}" alt="${recipe.name}">
       <p class="description">${truncateText(recipe.description, 200)}</p>
-      <p class="rating">Rating: ★★★★☆</p> 
-      <p class="duration">Duration: 30 mins</p>
+      <p class="rating"><img src = "./assets/star-svgrepo-com.svg"> ${(recipe.user_ratings?.score * 5).toFixed(2)}</p> 
+      <p class="duration">Duration: ${recipe.total_time_minutes} mins</p>
       <button onclick="window.location.href='recipe-details.html?id=${recipe.id}?email=${email}'">Get Recipe</button>
     `;
     container.appendChild(card);
@@ -101,4 +102,3 @@ function ClosePopup()
 }
 fetchRecipeOfTheDay();
 fetchRecipes();
-userFromUrl();

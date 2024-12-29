@@ -72,17 +72,25 @@ function displayRecipeDetails(data) {
   }
 
   const stepsList = document.getElementById('steps-list');
+  stepsList.classList.add('steps-list'); // Add class for styling
   stepsList.innerHTML = ''; // Clear existing content
   if (data.instructions) {
     data.instructions.forEach((instruction, index) => {
-      const li = document.createElement('li');
-      li.innerHTML = `<strong>Step ${index + 1}:</strong> ${instruction.display_text || 'No instructions available'}`;
-      stepsList.appendChild(li);
+      const details = document.createElement('details');
+      const summary = document.createElement('summary');
+      summary.textContent = `Step ${index + 1}`;
+      details.appendChild(summary);
+
+      const p = document.createElement('p');
+      p.innerHTML = instruction.display_text || 'No instructions available';
+      details.appendChild(p);
+
+      stepsList.appendChild(details);
     });
   } else {
-    const li = document.createElement('li');
-    li.textContent = 'No steps available';
-    stepsList.appendChild(li);
+    const p = document.createElement('p');
+    p.textContent = 'No steps available';
+    stepsList.appendChild(p);
   }
 }
 
