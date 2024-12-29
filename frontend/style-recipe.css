@@ -8,7 +8,6 @@ body {
 }
 
 .top-bar {
-    /* background-color: #ff5722; */
     color: white;
     display: flex;
     justify-content: space-between;
@@ -16,7 +15,6 @@ body {
     padding: 20px;
     width: 100%;
     z-index: 10;
-   
 }
 
 .logo {
@@ -42,11 +40,9 @@ body {
 .top-bar img{
     width: 40px;
     height: 40px;
-   
     margin-right: 10px;
 }
 .user-profile {
-    
     font-size: 18px;
 }
 
@@ -141,7 +137,7 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     margin-bottom: 20px;
 }
-/* Container for each comment */
+
 .comment-container {
   border: 1px solid #b9b8b8;
   border-radius: 10px;
@@ -152,7 +148,6 @@ body {
   flex-direction: column;
 }
 
-/* Header with name on left and rating on right */
 .comment-header {
   display: flex;
   justify-content: space-between;
@@ -168,17 +163,21 @@ body {
 .comment-rating {
   font-size: 16px;
   font-weight:bolder;
-  color: #ff9900; /* Optional color for rating */
+  color: #030303;
+  padding:5px;
+  border-radius: 25%;
+}
+.comment-rating img{
+  width:20px;
+  height:20px;
 }
 
-/* Style for the comment body */
 .comment-body {
   font-size: 14px;
   line-height: 1.6;
   color: #000000;
 }
 
-/* Add some spacing around the comments list */
 #comments-list {
   padding: 20px;
 }
@@ -252,7 +251,6 @@ body {
     display:flex;
 }
 
-
 .recipe-title h2{
     font-size: 2rem;
     font-weight: bold;
@@ -291,14 +289,18 @@ input, textarea {
     border-radius: 5px;
     margin-bottom: 10px;
 }
-
+.comment-rating{
+  display: flex;
+  gap:5px;
+  background-color: #def170;
+}
 .user-profile-popup {
   display: none;
   flex-direction: column;
   align-items: center;
   position: absolute;
-  top: 60px; /* Adjust based on your header height */
-  right: 50px; /* Adjust based on your layout */
+  top: 60px;
+  right: 50px;
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background: #f7d9ac;
@@ -320,56 +322,50 @@ input, textarea {
   margin-bottom: 10px;
 }
 
-
-/* General Styles */
 body {
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
     padding: 20px;
-  }
+}
   
-  h1, h2, h3 {
+h1, h2, h3 {
     color: #333;
-  }
+}
   
-  /* Recipe Header */
-  #recipe-header {
+#recipe-header {
     background-size: cover;
     background-position: center;
     height: 300px;
     border-radius: 8px;
     margin-bottom: 20px;
-  }
+}
   
-  /* Title Section */
-  #recipe-title {
+#recipe-title {
     font-size: 2rem;
     font-weight: bold;
     margin-bottom: 10px;
-  }
+}
   
-  /* Ingredients List */
-  #ingredients-list {
+#ingredients-list {
     list-style-type: decimal;
     padding-left: 20px;
     margin-bottom: 30px;
-  }
+}
   
-  #ingredients-list li {
+#ingredients-list li {
     font-size: 1rem;
     margin-bottom: 5px;
-  }
+}
   
-  /* Steps List */
-  #steps-list {
+#steps-list {
     list-style-type: decimal;
     padding-left: 20px;
-  }
+}
   
-  #steps-list li {
+#steps-list li {
     font-size: 1rem;
     margin-bottom: 10px;
-  }
+}
 
 .steps-list details {
     margin-bottom: 10px;
@@ -405,6 +401,23 @@ body {
     background-color: #fff;
 }
 
+.back-to-home {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ff5722;
+    text-decoration: none;
+}
+
+.back-to-home img {
+    width: 24px;
+    height: 24px;
+    margin-right: 8px;
+}
+
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
@@ -426,9 +439,12 @@ body {
 
   .recipe-header {
     height: 200px;
-  
   }
-
+ 
+.comments img{
+    width:20px;
+    height: 20px;
+}
   .recipe-content {
     flex-direction: column;
   }
@@ -445,7 +461,6 @@ body {
   .recipe-header .details {
     flex-direction: row;
     align-items: flex-start;
-    
   }
 .overlay{
   display:flex;
@@ -455,12 +470,19 @@ body {
   .recipe-header .details p {
     margin: 5px 0;
   }
+
+  .back-to-home {
+    font-size: 14px;
+  }
+
+  .back-to-home img {
+    display: none;
+  }
 }
 
 @media (max-width: 480px) {
   .top-bar {
     padding: 10px;
-
   }
 
   .logo {
@@ -475,7 +497,6 @@ body {
 
   .recipe-title h2 {
     font-size: 1.5rem;
-   
   }
 .recipe-info{
   margin-bottom:40px;
@@ -491,6 +512,14 @@ body {
 
   .comment {
     padding: 8px;
+  }
+
+  .back-to-home {
+    font-size: 14px;
+  }
+
+  .back-to-home img {
+    display: none;
   }
 }
 

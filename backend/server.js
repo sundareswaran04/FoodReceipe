@@ -26,10 +26,10 @@ mongoose.connect(uri, {
 .then(() => console.log('MongoDB connected...'))
 .catch(err => console.error('Error connecting to MongoDB:', err));
 
-// Static Files
+
 app.use(express.static(path.join(__dirname, '../frontend')));
 
-// Routes
+
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, '../frontend/login-page.html'));
 });
@@ -39,7 +39,7 @@ app.get('/login', (req, res) => {
 });
 
 
-// User Schema
+
 const userSchema = new mongoose.Schema({
   email: {
     type: String,
@@ -81,7 +81,7 @@ const commentSchema = new mongoose.Schema({
 });
 const User = mongoose.model('User', userSchema);
 const Comment = mongoose.model('Comment', commentSchema);
-// User Registration Route
+
 app.post('/sign-up', async (req, res) => {
   const { email, password, confirmPassword } = req.body;
 
@@ -112,11 +112,11 @@ app.post('/sign-up', async (req, res) => {
     res.status(500).json({ error: 'Error registering user' });
   }
 });
-// API endpoint to fetch comments for a specific recipeId
 
 
 
-// User Login Route
+
+
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
 
@@ -176,16 +176,16 @@ app.get('/comment-section', async (req, res) => {
   try {
     const comments = await Comment.find({ recipeId: Id });
     if (comments.length === 0) {
-      return res.json([]); // Return an empty array instead of an error
+      return res.json([]); 
     }
-    res.json(comments); // Return comments as JSON array
+    res.json(comments); 
   } catch (error) {
     console.error('Error fetching comments:', error);
     res.status(500).json({ error: 'Error fetching comments' });
   }
 });
 
-// Start Server
+
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });

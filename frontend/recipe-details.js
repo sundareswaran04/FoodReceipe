@@ -3,8 +3,11 @@ document.addEventListener('DOMContentLoaded', () => {
   fetchRecipeDetails(recipeId);
   fetchComments(recipeId);
 
-  // Add event listener for the comment form
   document.getElementById('comment-form').addEventListener('submit', handleCommentFormSubmit);
+
+  document.getElementById('back-to-home').addEventListener('click', () => {
+    window.history.back();
+  });
 });
 
 function getRecipeIdFromUrl() {
@@ -21,7 +24,7 @@ function fetchRecipeDetails(recipeId) {
   fetch(`https://tasty.p.rapidapi.com/recipes/get-more-info?id=${recipeId}`, {
     method: 'GET',
     headers: {
-      'x-rapidapi-key': 'f524d4c098msh693447b79e988e9p1134a5jsn129fa365cef3',
+      'x-rapidapi-key': '9e554d709amsh6f625362444bb16p1e1511jsnd26a28dd997b',
       'x-rapidapi-host': 'tasty.p.rapidapi.com'
     }
   })
@@ -29,22 +32,21 @@ function fetchRecipeDetails(recipeId) {
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.text(); // Read the response as text first
+    return response.text();
   })
   .then(text => {
     if (!text) {
       throw new Error('Empty response body');
     }
     try {
-      const data = JSON.parse(text); // Now parse the JSON text
-      displayRecipeDetails(data); // Function to handle the valid response
+      const data = JSON.parse(text);
+      displayRecipeDetails(data);
     } catch (error) {
       throw new Error('Failed to parse JSON response');
     }
   })
   .catch(error => {
     console.error('Error fetching recipe details:', error);
-    // Optionally display a user-friendly error message in the UI
     document.getElementById('recipe-title').textContent = 'Error fetching recipe details';
   });
 }
@@ -58,7 +60,7 @@ function displayRecipeDetails(data) {
   document.getElementById('recipe-header').style.backgroundImage = `url(${data.thumbnail_url || ''})`;
   document.getElementById('title').textContent = data.name;
   const ingredientsList = document.getElementById('ingredients-list');
-  ingredientsList.innerHTML = ''; // Clear existing content
+  ingredientsList.innerHTML = '';
   if (data.sections && data.sections[0] && data.sections[0].components) {
     data.sections[0].components.forEach((component, index) => {
       const li = document.createElement('li');
@@ -72,8 +74,8 @@ function displayRecipeDetails(data) {
   }
 
   const stepsList = document.getElementById('steps-list');
-  stepsList.classList.add('steps-list'); // Add class for styling
-  stepsList.innerHTML = ''; // Clear existing content
+  stepsList.classList.add('steps-list');
+  stepsList.innerHTML = '';
   if (data.instructions) {
     data.instructions.forEach((instruction, index) => {
       const details = document.createElement('details');
@@ -149,8 +151,8 @@ async function fetchComments(recipeId) {
     } else if (response.status === 500) {
       alert('Error fetching comments');
     } else {
-      const comments = await response.json(); // Assuming the server returns JSON with comments
-      displayComments(comments); // Function to update the UI with comments
+      const comments = await response.json();
+      displayComments(comments);
     }
   } catch (error) {
     console.error('Error:', error);
@@ -160,7 +162,7 @@ async function fetchComments(recipeId) {
 
 function displayComments(data) {
   const commentsList = document.getElementById('comments-list');
-  commentsList.innerHTML = ''; // Clear existing content
+  commentsList.innerHTML = '';
   if (!Array.isArray(data) || data.length === 0) {
     const noComments = document.createElement('p');
     noComments.classList.add('no-comments');
@@ -169,11 +171,9 @@ function displayComments(data) {
     return;
   }
   data.forEach(comment => {
-    // Create the main container for each comment
     const commentContainer = document.createElement('div');
     commentContainer.classList.add('comment-container');
     
-    // Create the name and rating sections
     const header = document.createElement('div');
     header.classList.add('comment-header');
     
@@ -183,21 +183,18 @@ function displayComments(data) {
     
     const rating = document.createElement('span');
     rating.classList.add('comment-rating');
-    rating.innerText = `Rating: ${comment.rating}`;
+    rating.innerHTML = `<img src="./assets/star-svgrepo-com.svg" alt="star" class="star-icon">${comment.rating}`;
     
     header.appendChild(name);
     header.appendChild(rating);
     
-    // Create the comment body section
     const commentBody = document.createElement('p');
     commentBody.classList.add('comment-body');
     commentBody.innerHTML = comment.comment;
 
-    // Append header and body to the comment container
     commentContainer.appendChild(header);
     commentContainer.appendChild(commentBody);
     
-    // Add the comment container to the comments list
     commentsList.appendChild(commentContainer);
   });
 }
@@ -209,6 +206,3 @@ function PopupOpen() {
 function PopupClose() {
   document.getElementById('user-profile-popup').style.display = "none";
 }
-
-// sample();
-// userFromUrl();

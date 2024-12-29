@@ -6,7 +6,7 @@ const baseUrl = 'https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes
 const options = {
   method: 'GET',
   headers: {
-    'x-rapidapi-key': 'f524d4c098msh693447b79e988e9p1134a5jsn129fa365cef3',
+    'x-rapidapi-key': '9e554d709amsh6f625362444bb16p1e1511jsnd26a28dd997b',
     'x-rapidapi-host': 'tasty.p.rapidapi.com'
   }
 };
@@ -24,8 +24,8 @@ async function fetchRecipeOfTheDay() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log('Recipe of the Day:', result); // Debugging log
-    const recipe = result.results[recipeOfday]; // Pick the first recipe
+    console.log('Recipe of the Day:', result);
+    const recipe = result.results[recipeOfday]; 
     displayRecipeOfTheDay(recipe);
     document.getElementById('get-recipe-btn').addEventListener('click', () => {
       window.location.href = `recipe-details.html?id=${recipe.id}?email=${email}`;
@@ -40,7 +40,7 @@ async function fetchRecipes() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log('Popular Recipes:', result); // Debugging log
+    console.log('Popular Recipes:', result); 
     displayPopularRecipes(result.results);
   } catch (error) {
     console.error('Error fetching recipes:', error);

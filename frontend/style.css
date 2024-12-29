@@ -1,6 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
-
 * {
     margin: 0;
     padding: 0;
@@ -29,7 +28,6 @@ body {
     z-index: 0;
 }
 
-
 .container {
     position: relative;
     z-index: 1;
@@ -43,17 +41,14 @@ body {
     margin: 0 auto; 
 }
 
-
 .input-form {
     text-align: center;
 }
-
 
 .logo img {
     width: 80px;
     margin-bottom: 15px;
 }
-
 
 .title h3 {
     font-size: 24px;
@@ -68,7 +63,6 @@ body {
     margin: 5px 0 20px;
     font-weight: 400;
 }
-
 
 .input-section input {
     width: 100%;
@@ -124,36 +118,35 @@ body {
     gap:10px;
     flex-direction: column;
     justify-content: center;
-    display: none; /* Hidden by default */
-    position: fixed; /* Stays at the top even when scrolling */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Center alignment adjustment */
-    margin: 0; /* Reset margin */
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin: 0;
     padding: 20px;
     max-width: 400px;
-    max-height:400px; /* Restrict width */
+    max-height:400px;
     font-size: 18px;
     color: #333;
-    z-index: 10000; /* Ensures it appears above other content */
-    background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    border-radius: 8px; /* Rounded corners */
-    color: #fff; /* White text color for better contrast */
+    z-index: 10000;
+    background-color: rgba(0, 0, 0, 0.8);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    color: #fff;
 }
 
 .popup-msg-body {
     display: block;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Center align content */
+    flex-direction: column;
+    align-items: center;
     font-size: 14px;
     color: #fffdfd;
 }
 
 .close-popup-btn {
-
     align-self:center;
-    background: #ff5722; /* Eye-catching orange color */
+    background: #ff5722;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -165,13 +158,13 @@ body {
 }
 
 .close-popup-btn:hover {
-    background: #e64a19; /* Darker shade on hover */
-    transform: scale(1.05); /* Slight zoom effect */
+    background: #e64a19;
+    transform: scale(1.05);
 }
 
 .close-popup-btn:active {
-    background: #d84315; /* Even darker shade on click */
-    transform: scale(1); /* Reset zoom */
+    background: #d84315;
+    transform: scale(1);
 }
 
 .additional-info {
