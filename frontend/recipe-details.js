@@ -5,9 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   document.getElementById('comment-form').addEventListener('submit', handleCommentFormSubmit);
 
-  document.getElementById('back-to-home').addEventListener('click', () => {
-    window.history.back();
-  });
+ 
 });
 function getEmail(){
   const params = new URLSearchParams(window.location.search);
@@ -219,13 +217,13 @@ function PopupClose() {
   document.getElementById('user-profile-popup').style.display = "none";
 }
 
-// Add event listeners for mobile touch events
 document.querySelector('.user-profile').addEventListener('touchstart', PopupOpen);
 document.querySelector('.user-profile').addEventListener('touchend', PopupClose);
 
-function submitComment(commentData) {
-    // Implement the function to handle comment submission
-    console.log('Comment submitted:', commentData);
-}
+document.getElementById('back-to-home').addEventListener('click', () => {
+  const params = new URLSearchParams(window.location.search);
+  const user_email =  params.get('id').split('?')[1].split('=')[1];
+  window.location.href = `/HomePage.html?email=${user_email}`;
+});
 
 getEmail();
