@@ -16,7 +16,7 @@ This is a web application for browsing and managing food recipes. The applicatio
     ```
 2. Navigate to the project directory:
     ```bash
-    cd food-recipe-app
+    cd FoodRecipe
     ```
 3. Install the necessary dependencies:
     ```bash
