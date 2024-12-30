@@ -25,11 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.status === 400) {
-          const result = await response.text();
+          const result = await response.json();
           const popup_div = document.getElementById('popup-msg-body');
           const p = document.createElement('p');
           popup_div.innerHTML = '';
-          p.innerText = result;
+          p.innerText = result.error;
           popup_div.appendChild(p);
           document.getElementById('popup-msg-content').style.display = 'flex';
         } else if (response.status === 500) {
@@ -67,11 +67,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         if (response.status === 400) {
-          const result = await response.text();
+          const result = await response.json();
           const popup_div = document.getElementById('popup-msg-body');
           const p = document.createElement('p');
           popup_div.innerHTML = '';
-          p.innerText = result;
+
+          p.innerText = result.error;
           popup_div.appendChild(p);
           document.getElementById('popup-msg-content').style.display = 'flex';
         } else if (response.status === 500) {
@@ -93,7 +94,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
-function ClosePopupMsg()
-{
+function ClosePopupMsg() {
   document.getElementById('popup-msg-content').style.display = 'none';
 }

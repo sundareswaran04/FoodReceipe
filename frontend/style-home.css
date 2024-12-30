@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -39,6 +40,7 @@ body {
     display: flex;
     gap: 10px;
     align-items: center;
+    position: relative;
 }
 
 .search-bar input {
@@ -59,6 +61,18 @@ body {
 .search-bar .icon {
     width: 20px;
     height: 20px;
+}
+
+.autocomplete-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 200px;
+    overflow-y: auto;
+    width: calc(100% - 40px);
+    z-index: 1000;
 }
 
 .user-icon {
@@ -148,8 +162,8 @@ body {
     scroll-behavior: smooth;
     gap: 20px;
     padding: 10px 0;
-    white-space: nowrap; 
-    width: 100%; 
+    white-space: nowrap;
+    width: 100%;
     box-shadow: #222 2px;
 }
 
@@ -184,26 +198,28 @@ body {
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     white-space: normal;
-    text-align:left;
-    font-weight:bold;
-    padding-left:10px;
+    text-align: left;
+    font-weight: bold;
+    padding-left: 10px;
 }
 
 .recipe-card .rating,
 .recipe-card .duration {
-    padding-left:10px;
+    padding-left: 10px;
     font-size: 14px;
-    text-align:left;
-    font-weight:bold;
+    text-align: left;
+    font-weight: bold;
     color: #000000;
     margin: 5px 0;
-    display:flex;
-    gap:5px;
+    display: flex;
+    gap: 5px;
 }
-.recipe-card .rating img{
-    width:20px;
-    height:20px;
+
+.recipe-card .rating img {
+    width: 20px;
+    height: 20px;
 }
+
 .recipe-card button {
     padding: 10px 15px;
     background-color: #ff6600;
@@ -277,6 +293,12 @@ body {
 }
 
 @media (max-width: 768px) {
+    .recipe-of-the-day img {
+        width: 100%;
+        height: 100%;
+        fill: cover;
+    }
+
     .header {
         flex-direction: column;
         padding: 10px 20px;
@@ -333,6 +355,7 @@ body {
         margin-bottom: 20px;
     }
 }
+
 .user-profile-popup {
     display: none;
     flex-direction: column;
@@ -362,8 +385,16 @@ body {
 }
 
 @media (max-width: 480px) {
+
+    .recipe-of-the-day img {
+        width: 100%;
+        height: 100%;
+        fill: cover;
+    }
+
     .header {
         padding: 10px;
+        gap: 10px;
     }
 
     .recipe-of-the-day {
@@ -379,5 +410,12 @@ body {
         width: 25px;
         height: 25px;
         font-size: 16px;
+    }
+
+    .user-profile-popup {
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        background-color: #ddd;
+        align-self: center;
+        margin-left: 20px;
     }
 }

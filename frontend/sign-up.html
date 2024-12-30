@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-Up Page</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
     <div class="background-overlay"></div>
     <form id="sign-up-form" action="/sign-up" method="post">
@@ -19,7 +21,7 @@
                     <h4>Sign Up</h4>
                 </div>
                 <div class="input-section">
-                    
+
                     <input type="email" name="user-email-signup" placeholder="example@gmail.com" required>
                     <input type="password" name="user-password-signup" placeholder="Create password" required>
                     <input type="password" name="user-confirm-password" placeholder="Confirm password" required>
@@ -34,18 +36,19 @@
         </div>
     </form>
     <div class="popup-msg">
-        <div class="popup-msg-content" id = "popup-msg-content">
+        <div class="popup-msg-content" id="popup-msg-content">
             <div class="popup-msg-header">
                 <h3>Message</h3>
-                
+
             </div>
             <div class="popup-msg-body" id="popup-msg-body">
-           
-               
+
+
             </div>
             <button class="close-popup-btn" onclick="ClosePopupMsg()">X</button>
         </div>
     </div>
 </body>
 <script src="script.js"></script>
+
 </html>

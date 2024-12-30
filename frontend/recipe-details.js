@@ -2,36 +2,23 @@ document.addEventListener('DOMContentLoaded', () => {
   const recipeId = getRecipeIdFromUrl();
   fetchRecipeDetails(recipeId);
   fetchComments(recipeId);
-  const params = new URLSearchParams(window.location.search);
-  const user_email =  params.get('email');
-  const user_div = document.getElementById('user-profile-popup');
-  const h4 = document.createElement('h4');
-  h4.innerText = user_email;
-  user_div.append(h4);
-  document.getElementById('comment-form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const rating = document.querySelector('input[name="user-rating"]:checked').value;
-    const comment = document.getElementById('comment').value;
 
-    const commentData = {
-        name: name,
-        email: email,
-        rating: rating,
-        comment: comment
-    };
-
-    // Assuming you have a function to handle the comment submission
-    submitComment(commentData);
-  });
+  document.getElementById('comment-form').addEventListener('submit', handleCommentFormSubmit);
 
   document.getElementById('back-to-home').addEventListener('click', () => {
     window.history.back();
   });
 });
-
+function getEmail(){
+  const params = new URLSearchParams(window.location.search);
+  const user_email =  params.get('id').split('?')[1].split('=')[1];
+  const user_div = document.getElementById('user-profile-popup');
+  user_div.innerHTML = '';
+  const h4 = document.createElement('h4');
+  h4.innerText = user_email;
+  console.log(user_email);
+  user_div.append(h4);
+}
 function getRecipeIdFromUrl() {
   const params = new URLSearchParams(window.location.search); 
   const recipeId = params.get('id');  
@@ -123,7 +110,7 @@ async function handleCommentFormSubmit(event) {
   const email = document.querySelector('input[name="user-email"]').value;
   const name = document.querySelector('input[name="user-name"]').value;
   const comment = document.querySelector('textarea[name="user-comment"]').value;
-  const rating = document.querySelector('input[name="user-rating"]').value;
+  const rating = document.querySelector('input[name="user-rating"]:checked').value;
 
   if (!email || !name || !comment || !rating) {
     alert('All fields are required');
@@ -146,7 +133,10 @@ async function handleCommentFormSubmit(event) {
       alert('Error posting comment');
     } else {
       const result = await response.text();
-      alert(result);
+      document.querySelector('input[name="user-email"]').value = '';
+      document.querySelector('input[name="user-name"]').value = '';
+      document.querySelector('textarea[name="user-comment"]').value = '';
+      document.querySelector('input[name="user-rating"]:checked').checked = false;
       fetchComments(recipeId);
     }
   } catch (error) {
@@ -207,9 +197,9 @@ function displayComments(data) {
     rating.classList.add('comment-rating');
     rating.innerHTML = `<img src="./assets/star-svgrepo-com.svg" alt="star" class="star-icon">${comment.rating}`;
     
-    header.appendChild(name);
-    header.appendChild(rating);
     
+    header.appendChild(rating);
+    header.appendChild(name);
     const commentBody = document.createElement('p');
     commentBody.classList.add('comment-body');
     commentBody.innerHTML = comment.comment;
@@ -238,3 +228,4 @@ function submitComment(commentData) {
     console.log('Comment submitted:', commentData);
 }
 
+getEmail();

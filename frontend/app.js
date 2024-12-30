@@ -9,13 +9,15 @@ const options = {
   }
 };
 
-  const params = new URLSearchParams(window.location.search);
-  const email =  params.get('email');
-  const user_div = document.getElementById('user-profile-popup');
-  const h4 = document.createElement('h4');
-  h4.innerText = email;
-  user_div.append(h4);
-const recipeOfday = Math.floor(Date.now()*.00000000001)
+const params = new URLSearchParams(window.location.search);
+const email = params.get('email');
+const user_div = document.getElementById('user-profile-popup');
+const h4 = document.createElement('h4');
+h4.innerText = email;
+
+
+user_div.append(h4);
+const recipeOfday = Math.floor(Date.now() * .00000000001)
 
 async function fetchRecipeOfTheDay() {
   const url = `${baseUrl}&from=0&size=100`;
@@ -23,7 +25,7 @@ async function fetchRecipeOfTheDay() {
     const response = await fetch(url, options);
     const result = await response.json();
     console.log('Recipe of the Day:', result);
-    const recipe = result.results[recipeOfday]; 
+    const recipe = result.results[recipeOfday];
     displayRecipeOfTheDay(recipe);
     document.getElementById('get-recipe-btn').addEventListener('click', () => {
       window.location.href = `recipe-details.html?id=${recipe.id}?email=${email}`;
@@ -38,7 +40,7 @@ async function fetchRecipes() {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-    console.log('Popular Recipes:', result); 
+    console.log('Popular Recipes:', result);
     displayPopularRecipes(result.results);
   } catch (error) {
     console.error('Error fetching recipes:', error);
@@ -53,11 +55,11 @@ function displayRecipeOfTheDay(recipe) {
 }
 
 function displayPopularRecipes(recipes) {
-  
+
   const container = document.getElementById('recipes-container');
   container.innerHTML = '';
   recipes.forEach(recipe => {
-  
+
     const card = document.createElement('div');
     card.className = 'recipe-card';
     card.innerHTML = `
@@ -89,13 +91,11 @@ function moveRight() {
   start += size;
   fetchRecipes();
 }
-function UserPopup()
-{
+function UserPopup() {
   document.getElementById('user-profile-popup').style.display = "flex"
 }
 
-function ClosePopup()
-{
+function ClosePopup() {
   document.getElementById('user-profile-popup').style.display = "none"
 }
 
@@ -113,3 +113,4 @@ document.querySelector('.user-profile-popup').addEventListener('touchend', Popup
 
 fetchRecipeOfTheDay();
 fetchRecipes();
+
