@@ -11,12 +11,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 3200;
 
-// Middleware
-app.use(cors()); // Allow specific origins
+
+app.use(cors()); 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// MongoDB Connection
+
 const uri ="mongodb+srv://new-user-01:test123@foodrecipe.nr26n.mongodb.net/?retryWrites=true&w=majority&appName=FoodRecipe";
 
 mongoose.set('strictQuery', false);
