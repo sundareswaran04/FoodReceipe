@@ -1,5 +1,3 @@
- 
-
 let start = 0;
 const size = 5;
 const baseUrl = 'https://tasty.p.rapidapi.com/recipes/list?tags=under_30_minutes';
@@ -100,5 +98,18 @@ function ClosePopup()
 {
   document.getElementById('user-profile-popup').style.display = "none"
 }
+
+function PopupOpen() {
+  document.getElementById('user-profile-popup').style.display = "flex";
+}
+
+function PopupClose() {
+  document.getElementById('user-profile-popup').style.display = "none";
+}
+
+// Add event listeners for mobile touch events
+document.querySelector('.user-profile-popup').addEventListener('touchstart', PopupOpen);
+document.querySelector('.user-profile-popup').addEventListener('touchend', PopupClose);
+
 fetchRecipeOfTheDay();
 fetchRecipes();

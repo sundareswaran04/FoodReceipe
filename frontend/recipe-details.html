@@ -46,7 +46,7 @@
                     <ul class="ingredients-list" id="ingredients-list">
                        
                     </ul>
-
+                     <h3>Cooked this before?add your thoughts</h3>
                     <form class="comment-form" method="post" action="/comment-post" id="comment-form">
                         <div class="form-group">
                             <label for="name">Name:</label>
@@ -58,7 +58,18 @@
                         </div>
                         <div class="form-group">
                             <label for="rating">Rating:</label>
-                            <input type="number" id="rating" name="user-rating" min="1" max="5" placeholder="Your Rating (1-5)">
+                            <div class="rating">
+                                <input type="radio" id="star5" name="user-rating" value="5">
+                                <label for="star5"><img src="./assets/star-svgrepo-com.svg" alt="5 stars"></label>
+                                <input type="radio" id="star4" name="user-rating" value="4">
+                                <label for="star4"><img src="./assets/star-svgrepo-com.svg" alt="4 stars"></label>
+                                <input type="radio" id="star3" name="user-rating" value="3">
+                                <label for="star3"><img src="./assets/star-svgrepo-com.svg" alt="3 stars"></label>
+                                <input type="radio" id="star2" name="user-rating" value="2">
+                                <label for="star2"><img src="./assets/star-svgrepo-com.svg" alt="2 stars"></label>
+                                <input type="radio" id="star1" name="user-rating" value="1">
+                                <label for="star1"><img src="./assets/star-svgrepo-com.svg" alt="1 star"></label>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="comment">Comment:</label>

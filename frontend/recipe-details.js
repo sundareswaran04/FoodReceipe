@@ -2,8 +2,30 @@ document.addEventListener('DOMContentLoaded', () => {
   const recipeId = getRecipeIdFromUrl();
   fetchRecipeDetails(recipeId);
   fetchComments(recipeId);
+  const params = new URLSearchParams(window.location.search);
+  const user_email =  params.get('email');
+  const user_div = document.getElementById('user-profile-popup');
+  const h4 = document.createElement('h4');
+  h4.innerText = user_email;
+  user_div.append(h4);
+  document.getElementById('comment-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+    
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const rating = document.querySelector('input[name="user-rating"]:checked').value;
+    const comment = document.getElementById('comment').value;
 
-  document.getElementById('comment-form').addEventListener('submit', handleCommentFormSubmit);
+    const commentData = {
+        name: name,
+        email: email,
+        rating: rating,
+        comment: comment
+    };
+
+    // Assuming you have a function to handle the comment submission
+    submitComment(commentData);
+  });
 
   document.getElementById('back-to-home').addEventListener('click', () => {
     window.history.back();
@@ -206,3 +228,13 @@ function PopupOpen() {
 function PopupClose() {
   document.getElementById('user-profile-popup').style.display = "none";
 }
+
+// Add event listeners for mobile touch events
+document.querySelector('.user-profile').addEventListener('touchstart', PopupOpen);
+document.querySelector('.user-profile').addEventListener('touchend', PopupClose);
+
+function submitComment(commentData) {
+    // Implement the function to handle comment submission
+    console.log('Comment submitted:', commentData);
+}
+

@@ -418,6 +418,36 @@ h1, h2, h3 {
     margin-right: 8px;
 }
 
+.rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-start;
+}
+
+.rating input[type="radio"] {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    margin: 0 2px;
+}
+
+.rating label img {
+    width: 100%;
+    height: auto;
+}
+
+.rating input[type="radio"]:checked ~ label img {
+    filter: grayscale(0%);
+}
+
+.rating label img {
+    filter: grayscale(100%);
+}
+
 @media (max-width: 768px) {
   .top-bar {
     flex-direction: column;
@@ -477,6 +507,11 @@ h1, h2, h3 {
 
   .back-to-home img {
     display: none;
+  }
+
+  .user-profile-popup {
+    right: 10px;
+    width: 90%;
   }
 }
 
