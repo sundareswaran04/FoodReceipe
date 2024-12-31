@@ -55,24 +55,24 @@ function displayRecipeOfTheDay(recipe) {
 }
 
 function displayPopularRecipes(recipes) {
-
   const container = document.getElementById('recipes-container');
   container.innerHTML = '';
   recipes.forEach(recipe => {
-
     const card = document.createElement('div');
     card.className = 'recipe-card';
     card.innerHTML = `
       <img src="${recipe.thumbnail_url}" alt="${recipe.name}">
+      <div class="recipe-details">
+        <h3 class="recipe-name">${recipe.name}</h3>
+        <p class="rating"><img src="./assets/star-svgrepo-com.svg"> ${(recipe.user_ratings?.score * 5).toFixed(2)}</p>
+      </div>
       <p class="description">${truncateText(recipe.description, 200)}</p>
-      <p class="rating"><img src = "./assets/star-svgrepo-com.svg"> ${(recipe.user_ratings?.score * 5).toFixed(2)}</p> 
       <p class="duration">Duration: ${recipe.total_time_minutes} mins</p>
       <button onclick="window.location.href='recipe-details.html?id=${recipe.id}?email=${email}'">Get Recipe</button>
     `;
     container.appendChild(card);
   });
 }
-
 function truncateText(text, maxLength) {
   if (text.length > maxLength) {
     return text.substring(0, maxLength) + '...';
