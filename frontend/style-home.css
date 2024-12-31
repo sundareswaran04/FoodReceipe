@@ -149,7 +149,32 @@ body {
     margin-bottom: 20px;
     color: #222;
 }
+.recipe-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
 
+.recipe-name {
+    flex: 1;
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.rating {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.rating img {
+    width: 20px;
+    height: 20px;
+    }
 .scroll-container {
     display: flex;
     align-items: center;
